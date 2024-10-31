@@ -2,25 +2,25 @@
 import axios from "axios";
 
 export default async function handler(req, res) {
-  const { path } = req.query; // This allows for dynamic path forwarding
-  const url = `https://api-doc-tht.nutech-integrasi.com/${path}`; // Construct full API URL
+  const { path } = req.query; // Allows dynamic path routing
+  const url = `https://api-doc-tht.nutech-integrasi.com/${path}`; // Full API URL
 
   try {
+    // Make the request to the third-party API, dynamically using the request method
     const response = await axios({
-      method: req.method,
+      method: req.method, // Use the request method (GET, POST, etc.)
       url,
-      data: req.body,
+      data: req.body, // Send the request body for POST requests
       headers: {
         "Content-Type": "application/json",
-        // Add any other headers you need here, e.g., authorization tokens
-        ...req.headers,
+        ...req.headers, // Forward any necessary headers
       },
     });
 
     // Forward the response back to the client
     res.status(response.status).json(response.data);
   } catch (error) {
-    // Handle errors and forward them back to the client
+    // Handle and forward errors to the client
     res
       .status(error.response?.status || 500)
       .json(error.response?.data || "Proxy error");
