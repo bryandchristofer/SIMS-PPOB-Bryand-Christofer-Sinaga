@@ -1,0 +1,104 @@
+/* src/components/LoginForm.css */
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    background-color: #f7f1f1;
+  }
+  
+  .login-form {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  
+  .logo-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    width: 40px;
+    height: auto;
+    margin-right: 10px;
+  }
+  
+  .title {
+    font-size: 20px;
+    color: #333;
+    font-weight: 700;
+  }
+  
+  .login-form h2 {
+    font-size: 24px;
+    color: #333;
+    font-weight: 500;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .login-form input {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .login-form button {
+    padding: 12px;
+    background-color: #ff2c2c;
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .login-form button:disabled {
+    background-color: #e0e0e0;
+    cursor: not-allowed;
+  }
+  
+  .login-form p {
+    font-size: 14px;
+    color: #888;
+    text-align: center;
+  }
+  
+  .login-form p a {
+    color: #ff2c2c;
+    text-decoration: none;
+  }
+  
+  /* Error message styling */
+  .error-message {
+    color: red;
+    font-size: 13px;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  
+  .login-illustration {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f7f1f1;
+  }
+  
+  .login-illustration img {
+    max-width: 80%;
+    height: auto;
+  }
+  

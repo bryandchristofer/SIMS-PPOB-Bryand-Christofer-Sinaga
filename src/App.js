@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import RegistrationForm from "./components/RegistrationForm";
+import LoginForm from "./components/LoginForm";
+import HomePage from "./components/HomePage"; // Assuming you have a HomePage component
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route path="/" element={<LoginForm />} />{" "}
+          {/* Login page as the default */}
+          <Route path="/register" element={<RegistrationForm />} />{" "}
+          {/* Registration page */}
+          <Route path="/home" element={<HomePage />} />{" "}
+          {/* Main page after login */}
+        </Routes>
+      </div>
+    </Router>
   );
-}
+};
 
 export default App;
