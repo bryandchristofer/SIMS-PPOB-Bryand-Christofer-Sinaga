@@ -31,10 +31,7 @@ export const { registerStart, registerSuccess, registerFail } =
 export const registerUser = (userData) => async (dispatch) => {
   dispatch(registerStart());
   try {
-    await axios.post(
-      "https://api-doc-tht.nutech-integrasi.com/registration",
-      userData
-    );
+    await axios.post("api/proxy/registration", userData);
     dispatch(registerSuccess());
   } catch (error) {
     dispatch(

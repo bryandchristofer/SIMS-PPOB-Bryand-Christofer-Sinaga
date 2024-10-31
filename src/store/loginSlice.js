@@ -40,10 +40,7 @@ export const { loginStart, loginSuccess, loginFail, logout } =
 export const loginUser = (credentials) => async (dispatch) => {
   dispatch(loginStart());
   try {
-    const response = await axios.post(
-      "https://api-doc-tht.nutech-integrasi.com/login",
-      credentials
-    );
+    const response = await axios.post("/api/proxy/login", credentials);
     const sessionData = response.data; // Assuming the session token comes in the response data
     dispatch(loginSuccess(sessionData));
     localStorage.setItem("session", JSON.stringify(sessionData)); // Store session in local storage

@@ -53,24 +53,16 @@ export const {
 export const fetchHomeData = () => async (dispatch) => {
   dispatch(fetchStart());
   try {
-    const profileResponse = await axios.get(
-      "https://api-doc-tht.nutech-integrasi.com/profile"
-    );
+    const profileResponse = await axios.get("/api/proxy/profile");
     dispatch(fetchProfileSuccess(profileResponse.data));
 
-    const balanceResponse = await axios.get(
-      "https://api-doc-tht.nutech-integrasi.com/balance"
-    );
+    const balanceResponse = await axios.get("/api/proxy/balance");
     dispatch(fetchBalanceSuccess(balanceResponse.data));
 
-    const servicesResponse = await axios.get(
-      "https://api-doc-tht.nutech-integrasi.com/services"
-    );
+    const servicesResponse = await axios.get("/api/proxy/services");
     dispatch(fetchServicesSuccess(servicesResponse.data));
 
-    const bannersResponse = await axios.get(
-      "https://api-doc-tht.nutech-integrasi.com/banner"
-    );
+    const bannersResponse = await axios.get("/api/proxy/banner");
     dispatch(fetchBannersSuccess(bannersResponse.data));
   } catch (error) {
     dispatch(fetchFail(error.response?.data?.message || "Failed to load data"));
