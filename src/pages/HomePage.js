@@ -1,4 +1,3 @@
-// src/components/HomePage.js
 import React, { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchHomeData } from "../store/homeSlice";

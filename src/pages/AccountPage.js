@@ -1,4 +1,3 @@
-// src/components/AccountPage.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -7,19 +6,20 @@ import {
   updateProfileImage,
   logout,
 } from "../store/accountSlice";
+import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import defaultProfileImage from "../assets/Profile Photo.png"; // Default image path
+import defaultProfileImage from "../assets/Profile Photo.png";
 import "./AccountPage.css";
 
 const AccountPage = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const profile = useSelector((state) => state.account.profile);
 
   const [previewImage, setPreviewImage] = useState(defaultProfileImage);
   const [isEditing, setIsEditing] = useState(false);
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("");
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
@@ -30,7 +30,6 @@ const AccountPage = () => {
     if (profile) {
       setFirstName(profile.first_name);
       setLastName(profile.last_name);
-      setEmail(profile.email);
       setPreviewImage(profile.profile_image || defaultProfileImage);
     }
   }, [profile]);
@@ -42,9 +41,8 @@ const AccountPage = () => {
       (file.type === "image/jpeg" || file.type === "image/png") &&
       file.size <= 100 * 1024
     ) {
-      // Check file type and size
       const formData = new FormData();
-      formData.append("profile_image", file);
+      formData.append("file", file);
       setPreviewImage(URL.createObjectURL(file));
       dispatch(updateProfileImage(formData)).then((response) => {
         if (response.error) {
@@ -68,18 +66,18 @@ const AccountPage = () => {
     setNotification(null);
     setFirstName(profile.first_name);
     setLastName(profile.last_name);
-    setEmail(profile.email);
   };
 
   const handleSaveClick = async () => {
     const updatedProfile = {
-      email,
       first_name: firstName,
       last_name: lastName,
     };
+
     const result = await dispatch(updateProfileData(updatedProfile));
 
-    if (result.payload?.status === 0) {
+    if (result.meta.requestStatus === "fulfilled") {
+      dispatch(fetchProfile());
       setNotification("Profile updated successfully!");
       setIsEditing(false);
     } else {
@@ -87,8 +85,9 @@ const AccountPage = () => {
     }
   };
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await dispatch(logout());
+    navigate("/");
   };
 
   return (
@@ -121,16 +120,7 @@ const AccountPage = () => {
         <section className="profile-details">
           <div className="profile-field">
             <label>Email</label>
-            {isEditing ? (
-              <input
-                type="email"
-                className="edit-input"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
-            ) : (
-              <div className="detail-box">{email}</div>
-            )}
+            <div className="detail-box">{profile?.email}</div>
           </div>
 
           <div className="profile-field">

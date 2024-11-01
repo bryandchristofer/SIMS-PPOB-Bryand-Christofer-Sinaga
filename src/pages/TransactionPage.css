@@ -5,9 +5,9 @@
 }
 
 .transaction-history-container {
-  width: 90%; /* Apply width restriction only to transaction history */
-  max-width: 3000px; /* Maximum width for larger screens */
-  margin: 20px auto; /* Center align this container */
+  width: 90%;
+  max-width: 3000px;
+  margin: 20px auto;
 }
 
 .transaction-item {
@@ -24,11 +24,11 @@
 }
 
 .transaction-amount.positive {
-  color: #4caf50; /* Green color for top-ups */
+  color: #4caf50;
 }
 
 .transaction-amount.negative {
-  color: #f44336; /* Red color for payments */
+  color: #f44336;
 }
 
 .transaction-description {

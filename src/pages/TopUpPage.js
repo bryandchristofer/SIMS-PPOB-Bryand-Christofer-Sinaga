@@ -1,4 +1,3 @@
-// src/components/TopUpPage.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -27,14 +26,14 @@ const TopUpPage = () => {
   const [confirmedNominal, setConfirmedNominal] = useState(0);
 
   useEffect(() => {
-    dispatch(resetTopUpState()); // Reset the top-up state when the component mounts
-    dispatch(fetchHomeData()); // Load profile and balance data
+    dispatch(resetTopUpState());
+    dispatch(fetchHomeData());
   }, [dispatch]);
 
   useEffect(() => {
     if (success || error) {
-      setShowModal(false); // Close confirmation modal
-      setShowResult(true); // Show result modal
+      setShowModal(false);
+      setShowResult(true);
     }
   }, [success, error]);
 
@@ -52,7 +51,7 @@ const TopUpPage = () => {
 
   const handleConfirmTopUp = () => {
     const parsedAmount = parseInt(nominal) || 0;
-    setConfirmedNominal(parsedAmount); // Store the confirmed nominal amount
+    setConfirmedNominal(parsedAmount);
     dispatch(topUpUser());
   };
 
@@ -65,7 +64,6 @@ const TopUpPage = () => {
     <div className="top-up-container">
       <Navbar />
 
-      {/* Pass profile and balance to ProfileBalanceSection */}
       <ProfileBalanceSection profile={profile} balance={{ amount: balance }} />
 
       <section className="top-up-input-section">
@@ -106,7 +104,6 @@ const TopUpPage = () => {
         </div>
       </section>
 
-      {/* Confirmation Modal */}
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -125,7 +122,6 @@ const TopUpPage = () => {
         </div>
       )}
 
-      {/* Result Modal */}
       {showResult && (
         <div className="modal-overlay">
           <div className="modal-content">

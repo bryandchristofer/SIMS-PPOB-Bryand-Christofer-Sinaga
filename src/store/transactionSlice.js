@@ -1,4 +1,3 @@
-// src/store/transactionSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -11,8 +10,8 @@ export const transactionSlice = createSlice({
     loading: false,
     error: null,
     offset: 0,
-    limit: 5, // Number of items to fetch per request
-    hasMore: true, // To control if there are more transactions to fetch
+    limit: 5,
+    hasMore: true,
   },
   reducers: {
     fetchTransactionStart: (state) => {
@@ -21,8 +20,8 @@ export const transactionSlice = createSlice({
     },
     fetchTransactionSuccess: (state, action) => {
       state.history = [...state.history, ...action.payload.records];
-      state.offset += state.limit; // Increase offset for the next fetch
-      state.hasMore = action.payload.records.length === state.limit; // Check if there are more records
+      state.offset += state.limit;
+      state.hasMore = action.payload.records.length === state.limit;
       state.loading = false;
     },
     fetchTransactionFail: (state, action) => {
@@ -38,7 +37,6 @@ export const {
   fetchTransactionFail,
 } = transactionSlice.actions;
 
-// Async thunk to fetch transactions
 export const fetchTransactionHistory = () => async (dispatch, getState) => {
   dispatch(fetchTransactionStart());
 

@@ -1,8 +1,7 @@
-/* src/components/TopUpPage.css */
-
 .top-up-container {
   width: 100%;
   padding: 20px;
+  box-sizing: border-box;
 }
 
 .top-up-input-section {
@@ -33,7 +32,7 @@
 }
 
 .preset-buttons-group button {
-  width: 80px;  /* Fixed width for uniformity */
+  width: 80px;
   padding: 10px;
   background-color: #f5f5f5;
   border: 1px solid #ccc;

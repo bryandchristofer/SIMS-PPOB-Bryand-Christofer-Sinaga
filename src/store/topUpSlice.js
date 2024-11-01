@@ -1,10 +1,8 @@
-// src/store/topUpSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const API_BASE_URL = "https://take-home-test-api.nutech-integrasi.com";
 
-// Thunk to handle top-up
 export const topUpUser = createAsyncThunk(
   "topUp/topUpUser",
   async (_, { getState, rejectWithValue }) => {
@@ -12,7 +10,6 @@ export const topUpUser = createAsyncThunk(
     const token = localStorage.getItem("token");
     const top_up_amount = parseInt(state.topUp.nominal);
 
-    // Validate that top_up_amount is a positive number
     if (isNaN(top_up_amount) || top_up_amount <= 0) {
       return rejectWithValue(
         "Invalid amount: Must be a positive number greater than zero."
@@ -22,7 +19,7 @@ export const topUpUser = createAsyncThunk(
     try {
       const response = await axios.post(
         `${API_BASE_URL}/topup`,
-        { top_up_amount, transaction_type: "TOPUP" }, // Ensure parameters match API requirements
+        { top_up_amount, transaction_type: "TOPUP" },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -31,11 +28,9 @@ export const topUpUser = createAsyncThunk(
         }
       );
 
-      // Check if the response status is 0, indicating success
       if (response.data.status === 0) {
-        return response.data.data.balance; // Return the new balance from API response
+        return response.data.data.balance;
       } else {
-        // Handle any specific API error message
         return rejectWithValue(response.data.message || "Top Up failed");
       }
     } catch (error) {
@@ -62,7 +57,7 @@ const topUpSlice = createSlice({
       state.loading = false;
       state.success = false;
       state.error = null;
-      state.nominal = ""; // Reset nominal
+      state.nominal = "";
     },
   },
   extraReducers: (builder) => {
@@ -76,7 +71,7 @@ const topUpSlice = createSlice({
         state.loading = false;
         state.success = true;
         state.error = null;
-        state.nominal = ""; // Clear the nominal input after successful top-up
+        state.nominal = "";
       })
       .addCase(topUpUser.rejected, (state, action) => {
         state.loading = false;
@@ -88,7 +83,6 @@ const topUpSlice = createSlice({
 
 export const { setNominal, resetTopUpState } = topUpSlice.actions;
 
-// Selector to retrieve nominal from state
 export const selectNominal = (state) => state.topUp.nominal;
 
 export default topUpSlice.reducer;

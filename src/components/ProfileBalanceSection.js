@@ -1,4 +1,3 @@
-// src/components/ProfileBalanceSection.js
 import React, { useState } from "react";
 import "./ProfileBalanceSection.css";
 
@@ -27,7 +26,6 @@ const ProfileBalanceSection = ({ profile, balance }) => {
         <div className="balance-card">
           <h3>Saldo anda</h3>
           <p className="balance-amount">
-            {/* Use balance?.amount to ensure we access the amount safely */}
             {isBalanceVisible
               ? `Rp ${balance?.amount?.toLocaleString("id-ID")}`
               : "*******"}

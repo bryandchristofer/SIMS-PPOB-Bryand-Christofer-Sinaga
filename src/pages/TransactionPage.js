@@ -1,4 +1,3 @@
-// src/components/TransactionPage.js
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchTransactionHistory } from "../store/transactionSlice";
@@ -16,12 +15,12 @@ const TransactionPage = () => {
   const balance = useSelector((state) => state.home.balance?.amount || 0);
 
   useEffect(() => {
-    dispatch(fetchHomeData()); // Load profile and balance data on component mount
-    dispatch(fetchTransactionHistory()); // Fetch initial transactions
+    dispatch(fetchHomeData());
+    dispatch(fetchTransactionHistory());
   }, [dispatch]);
 
   const handleShowMore = () => {
-    dispatch(fetchTransactionHistory()); // Fetch more transactions
+    dispatch(fetchTransactionHistory());
   };
 
   return (
@@ -29,7 +28,6 @@ const TransactionPage = () => {
       <Navbar />
       <ProfileBalanceSection profile={profile} balance={{ amount: balance }} />
 
-      {/* Separate container for the transaction history section */}
       <section className="transaction-history-container">
         <h3>Semua Transaksi</h3>
         {error && <p className="error-message">{error}</p>}
@@ -45,7 +43,6 @@ const TransactionPage = () => {
               {transaction.transaction_type === "TOPUP" ? "+" : "-"} Rp
               {Math.abs(transaction.total_amount).toLocaleString("id-ID")}
             </span>
-            {/* Removed transaction date */}
             <span className="transaction-description">
               {transaction.description}
             </span>

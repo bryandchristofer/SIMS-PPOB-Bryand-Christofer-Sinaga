@@ -1,4 +1,3 @@
-// src/store/homeSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
@@ -8,7 +7,7 @@ export const homeSlice = createSlice({
   name: "home",
   initialState: {
     profile: null,
-    balance: { amount: 0 }, // Ensure initial balance has an amount property
+    balance: { amount: 0 },
     services: [],
     banners: [],
     loading: false,
@@ -24,7 +23,6 @@ export const homeSlice = createSlice({
       state.loading = false;
     },
     fetchBalanceSuccess: (state, action) => {
-      // Set balance to an object with an "amount" property
       state.balance = action.payload || { amount: 0 };
       state.loading = false;
     },
@@ -68,7 +66,6 @@ export const fetchHomeData = () => async (dispatch) => {
     const balanceResponse = await axios.get(`${API_BASE_URL}/balance`, {
       headers,
     });
-    // Ensure balance is correctly set as an object with an amount property
     dispatch(
       fetchBalanceSuccess({ amount: balanceResponse.data.data.balance })
     );

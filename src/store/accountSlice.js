@@ -1,10 +1,8 @@
-// src/store/accountSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
 const API_BASE_URL = "https://take-home-test-api.nutech-integrasi.com";
 
-// Thunk to fetch profile data
 export const fetchProfile = createAsyncThunk(
   "account/fetchProfile",
   async (_, { rejectWithValue }) => {
@@ -22,13 +20,12 @@ export const fetchProfile = createAsyncThunk(
   }
 );
 
-// Thunk to update profile picture
 export const updateProfileImage = createAsyncThunk(
   "account/updateProfileImage",
   async (formData, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.post(
+      const response = await axios.put(
         `${API_BASE_URL}/profile/image`,
         formData,
         {
@@ -40,13 +37,14 @@ export const updateProfileImage = createAsyncThunk(
       );
 
       if (response.data.status === 0) {
-        return response.data.data; // Return updated profile data including profile_image
+        return response.data.data;
       } else {
         return rejectWithValue(
           response.data.message || "Failed to update profile image"
         );
       }
     } catch (error) {
+      console.error("Profile image upload error:", error.response);
       return rejectWithValue(
         error.response?.data?.message || "Profile image upload failed"
       );
@@ -59,9 +57,12 @@ export const updateProfileData = createAsyncThunk(
   async (updatedProfile, { rejectWithValue }) => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.post(
+      const response = await axios.put(
         `${API_BASE_URL}/profile/update`,
-        updatedProfile,
+        {
+          first_name: updatedProfile.first_name,
+          last_name: updatedProfile.last_name,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -71,17 +72,13 @@ export const updateProfileData = createAsyncThunk(
       );
 
       if (response.data.status === 0) {
-        return response.data.data; // Successfully updated profile
+        return response.data.data;
       } else {
-        // API returned a non-success status
-        console.error("API error:", response.data.message);
         return rejectWithValue(
           response.data.message || "Failed to update profile"
         );
       }
     } catch (error) {
-      // Log full error response for troubleshooting
-      console.error("Profile update error:", error.response);
       return rejectWithValue(
         error.response?.data?.message || "Update profile request failed"
       );
@@ -89,7 +86,6 @@ export const updateProfileData = createAsyncThunk(
   }
 );
 
-// Thunk to handle logout
 export const logout = createAsyncThunk("account/logout", async () => {
   localStorage.removeItem("token");
   return null;
