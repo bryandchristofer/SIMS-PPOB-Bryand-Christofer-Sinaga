@@ -1,61 +1,125 @@
 .service-payment-container {
-    width: 100%;
-    padding: 20px;
-    box-sizing: border-box;
-  }
-  
-  .service-payment-section {
-    margin-top: 20px auto;
-  }
-  
-  .payment-title {
-    text-align: left;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .service-info {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-  }
-  
-  .service-icon {
-    width: 40px;
-    height: 40px;
-    margin-right: 10px;
-  }
-  
-  .service-name {
-    font-size: 20px;
-    font-weight: bold;
-  }
-  
-  .payment-input {
-    width: 95%;
-    padding: 15px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-bottom: 20px;
-    box-sizing: border-box;
-  }
-  
-  .payment-button {
-    width: 95%;
-    padding: 15px;
-    background-color: #ff2c2c;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
-    box-sizing: border-box;
-  }
-  
-  .payment-button:hover {
-    background-color: #e02424;
-  }
-  
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.service-payment-section {
+  margin: 20px auto;
+}
+
+.payment-title {
+  text-align: left;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.service-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.service-icon {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+
+.service-name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.payment-input {
+  width: 95%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.payment-button {
+  width: 95%;
+  padding: 15px;
+  background-color: #ff2c2c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.payment-button:hover {
+  background-color: #e02424;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.modal-icon {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+.confirm-button,
+.cancel-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.confirm-button {
+  background-color: #ff2c2c;
+  color: white;
+}
+
+.cancel-button {
+  background-color: #f5f5f5;
+  color: #333;
+}
+
+.confirm-button:hover {
+  background-color: #e02424;
+}
+
+.cancel-button:hover {
+  background-color: #ddd;
+}

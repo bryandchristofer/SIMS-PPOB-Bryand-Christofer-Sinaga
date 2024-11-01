@@ -80,10 +80,8 @@
 
 .error-message {
   color: red;
-  font-size: 13px;
-  margin-top: -10px;
-  margin-bottom: 10px;
-  text-align: left;
+  font-size: 0.875rem;
+  margin-top: 4px;
 }
 
 .registration-illustration {
@@ -97,4 +95,18 @@
 .registration-illustration img {
   max-width: 80%;
   height: auto;
+}
+
+.input-field {
+  position: relative;
+}
+
+.password-toggle-icon {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 1.2rem;
 }

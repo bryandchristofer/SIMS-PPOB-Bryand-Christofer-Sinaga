@@ -7,6 +7,7 @@ import TransactionModal from "../components/TransactionModal";
 import "./ServicePaymentPage.css";
 import axios from "axios";
 import { fetchHomeData } from "../store/homeSlice";
+import logo from "../assets/Logo.png";
 
 const API_BASE_URL = "https://take-home-test-api.nutech-integrasi.com";
 
@@ -23,16 +24,11 @@ const ServicePaymentPage = () => {
   const [paymentAmount, setPaymentAmount] = useState(
     service?.service_tariff || 0
   );
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isConfirmModalOpen, setIsConfirmModalOpen] = useState(false);
+  const [isResultModalOpen, setIsResultModalOpen] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handlePayment = async () => {
-    if (balance.amount < paymentAmount) {
-      setIsSuccess(false);
-      setIsModalOpen(true);
-      return;
-    }
-
     const token = localStorage.getItem("token");
 
     try {
@@ -52,16 +48,29 @@ const ServicePaymentPage = () => {
 
       if (response.data.status === 0) {
         setIsSuccess(true);
-        setIsModalOpen(true);
+        setIsResultModalOpen(true);
         dispatch(fetchHomeData());
       } else {
         setIsSuccess(false);
-        setIsModalOpen(true);
+        setIsResultModalOpen(true);
       }
     } catch (error) {
       setIsSuccess(false);
-      setIsModalOpen(true);
+      setIsResultModalOpen(true);
     }
+  };
+
+  const handleConfirmClick = () => {
+    setIsConfirmModalOpen(true);
+  };
+
+  const handleConfirmPayment = () => {
+    setIsConfirmModalOpen(false);
+    handlePayment();
+  };
+
+  const handleCancelPayment = () => {
+    setIsConfirmModalOpen(false);
   };
 
   return (
@@ -88,14 +97,30 @@ const ServicePaymentPage = () => {
           }
           placeholder="Masukkan nominal"
         />
-        <button className="payment-button" onClick={handlePayment}>
+        <button className="payment-button" onClick={handleConfirmClick}>
           Bayar
         </button>
       </section>
 
+      {isConfirmModalOpen && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <img src={logo} alt="Logo" className="modal-icon" />
+            <p>Beli {service?.service_name} senilai</p>
+            <h2>Rp{paymentAmount.toLocaleString("id-ID")} ?</h2>
+            <button onClick={handleConfirmPayment} className="confirm-button">
+              Ya, lanjutkan Bayar
+            </button>
+            <button onClick={handleCancelPayment} className="cancel-button">
+              Batalkan
+            </button>
+          </div>
+        </div>
+      )}
+
       <TransactionModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
+        isOpen={isResultModalOpen}
+        onClose={() => setIsResultModalOpen(false)}
         isSuccess={isSuccess}
         amount={paymentAmount}
         serviceName={service?.service_name}

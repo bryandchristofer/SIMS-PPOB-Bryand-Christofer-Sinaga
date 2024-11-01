@@ -9,6 +9,7 @@ import {
 import { fetchHomeData } from "../store/homeSlice";
 import Navbar from "../components/Navbar";
 import ProfileBalanceSection from "../components/ProfileBalanceSection";
+import logo from "../assets/Logo.png";
 import "./TopUpPage.css";
 
 const TopUpPage = () => {
@@ -107,6 +108,7 @@ const TopUpPage = () => {
       {showModal && (
         <div className="modal-overlay">
           <div className="modal-content">
+            <img src={logo} alt="Logo" className="modal-logo" />{" "}
             <p>Anda yakin untuk Top Up sebesar</p>
             <h2>Rp{(parseInt(nominal) || 0).toLocaleString("id-ID")} ?</h2>
             <button onClick={handleConfirmTopUp} className="confirm-button">
@@ -125,6 +127,7 @@ const TopUpPage = () => {
       {showResult && (
         <div className="modal-overlay">
           <div className="modal-content">
+            <img src={logo} alt="Logo" className="modal-logo" />{" "}
             {success ? (
               <>
                 <p>Top Up sebesar</p>

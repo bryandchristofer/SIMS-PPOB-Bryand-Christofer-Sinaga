@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import "./LoginForm.css";
 import logo from "../assets/Logo.png";
 import illustration from "../assets/Illustrasi Login.png";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 
 const LoginForm = () => {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
   });
+  const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthenticated = useSelector(selectIsAuthenticated);
@@ -51,14 +53,22 @@ const LoginForm = () => {
             onChange={handleChange}
             required
           />
-          <input
-            type="password"
-            name="password"
-            placeholder="Masukkan password anda"
-            value={formData.password}
-            onChange={handleChange}
-            required
-          />
+          <div className="input-field">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              placeholder="Masukkan password anda"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <span
+              className="password-toggle-icon"
+              onClick={() => setShowPassword((prev) => !prev)}
+            >
+              {showPassword ? <FaEyeSlash /> : <FaEye />}
+            </span>
+          </div>
           <button type="submit" disabled={loading}>
             {loading ? "Masuk..." : "Masuk"}
           </button>
