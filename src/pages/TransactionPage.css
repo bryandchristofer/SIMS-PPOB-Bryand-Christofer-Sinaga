@@ -1,0 +1,55 @@
+.transaction-page-container {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.transaction-history-container {
+  width: 90%; /* Apply width restriction only to transaction history */
+  max-width: 3000px; /* Maximum width for larger screens */
+  margin: 20px auto; /* Center align this container */
+}
+
+.transaction-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.transaction-amount {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.transaction-amount.positive {
+  color: #4caf50; /* Green color for top-ups */
+}
+
+.transaction-amount.negative {
+  color: #f44336; /* Red color for payments */
+}
+
+.transaction-description {
+  font-size: 1rem;
+  color: #333;
+  text-align: right;
+  flex-grow: 1;
+}
+
+.show-more-button {
+  margin-top: 20px;
+  background-color: transparent;
+  border: none;
+  color: #e53935;
+  cursor: pointer;
+  font-size: 1rem;
+  text-decoration: underline;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,50 @@
+.profile-balance-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+  }
+  
+  .profile-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .username {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 5px;
+  }
+  
+  .balance-section {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .balance-card {
+    width: 300px;
+    height: 120px;
+    padding: 20px;
+    background-color: #ff2c2c;
+    color: #fff;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .balance-amount {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .balance-button {
+    background: none;
+    border: none;
+    color: #fff;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  

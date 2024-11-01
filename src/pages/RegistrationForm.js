@@ -1,10 +1,9 @@
-// src/components/RegistrationForm.js
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../store/registrationSlice";
 import "./RegistrationForm.css";
-import illustration from "../assets/Illustrasi Login.png"; // Import the illustration image
-import logo from "../assets/Logo.png"; // Import the logo image
+import illustration from "../assets/Illustrasi Login.png";
+import logo from "../assets/Logo.png";
 
 const RegistrationForm = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +13,7 @@ const RegistrationForm = () => {
     password: "",
     confirmPassword: "",
   });
-  const [passwordError, setPasswordError] = useState(null); // New state for password mismatch
+  const [passwordError, setPasswordError] = useState(null);
   const { loading, error, success } = useSelector(
     (state) => state.registration
   );
@@ -30,10 +29,10 @@ const RegistrationForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.password !== formData.confirmPassword) {
-      setPasswordError("Password tidak sama"); // Set password error message
+      setPasswordError("Password tidak sama");
       return;
     } else {
-      setPasswordError(null); // Clear error if passwords match
+      setPasswordError(null);
     }
 
     if (
@@ -103,7 +102,7 @@ const RegistrationForm = () => {
           </button>
         </form>
         <p>
-          sudah punya akun? <a href="/login">login di sini</a>
+          sudah punya akun? login<a href="/"> di sini</a>
         </p>
         {error && <p style={{ color: "red" }}>{error}</p>}
         {success && <p style={{ color: "green" }}>Registration successful!</p>}

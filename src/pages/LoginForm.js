@@ -1,4 +1,3 @@
-// src/components/LoginForm.js
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loginUser, selectIsAuthenticated } from "../store/loginSlice";
@@ -15,7 +14,7 @@ const LoginForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isAuthenticated = useSelector(selectIsAuthenticated);
-  const { loading, error } = useSelector((state) => state.login);
+  const { loading, error, message } = useSelector((state) => state.login);
 
   const handleChange = (e) => {
     setFormData({
@@ -31,7 +30,7 @@ const LoginForm = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/main"); // Redirect to the main page upon successful login
+      navigate("/home");
     }
   }, [isAuthenticated, navigate]);
 
@@ -65,8 +64,9 @@ const LoginForm = () => {
           </button>
         </form>
         {error && <p className="error-message">{error}</p>}
+        {message && <p className="success-message">{message}</p>}
         <p>
-          belum punya akun? <a href="/register">registrasi di sini</a>
+          belum punya akun? registrasi <a href="/register"> di sini</a>
         </p>
       </div>
       <div className="login-illustration">

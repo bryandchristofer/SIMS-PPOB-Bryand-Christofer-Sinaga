@@ -1,0 +1,113 @@
+/* src/components/TopUpPage.css */
+
+.top-up-container {
+  width: 100%;
+  padding: 20px;
+}
+
+.top-up-input-section {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.input-button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.top-up-input {
+  width: 70%;
+  padding: 15px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.preset-buttons-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.preset-buttons-group button {
+  width: 80px;  /* Fixed width for uniformity */
+  padding: 10px;
+  background-color: #f5f5f5;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.top-up-button-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.top-up-button {
+  width: 70%;
+  padding: 15px;
+  background-color: #ff2c2c;
+  color: #fff;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+  width: 300px;
+}
+
+.confirm-button,
+.cancel-button,
+.back-button {
+  width: 100%;
+  padding: 10px;
+  margin-top: 10px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.confirm-button {
+  background-color: #ff2c2c;
+  color: #fff;
+}
+
+.cancel-button {
+  background-color: #ccc;
+}
+
+.back-button {
+  background: none;
+  color: #ff2c2c;
+  text-decoration: underline;
+}

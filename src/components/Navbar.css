@@ -1,0 +1,45 @@
+.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
+    margin: 0; 
+    box-sizing: border-box;
+  }
+  
+  .navbar-brand {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .navbar-logo {
+    width: 35px;
+    margin-right: 8px;
+  }
+  
+  .navbar-title {
+    font-size: 18px;
+    color: #333;
+    font-weight: 700;
+  }
+  
+  .navbar-navigation a {
+    margin: 0 8px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .navbar-navigation a:hover {
+    color: #ff2c2c;
+  }
+  
+  .navbar-navigation .active {
+    color: #ff2c2c;
+    font-weight: bold;
+  }
+  

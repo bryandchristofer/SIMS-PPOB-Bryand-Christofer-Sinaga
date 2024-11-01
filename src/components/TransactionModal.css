@@ -1,0 +1,47 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .modal-icon.success {
+    color: green;
+    font-size: 30px;
+  }
+  
+  .modal-icon.failure {
+    color: red;
+    font-size: 30px;
+  }
+  
+  .amount {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 10px 0;
+  }
+  
+  .back-button {
+    background: none;
+    border: none;
+    color: #ff2c2c;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 15px;
+  }
+  

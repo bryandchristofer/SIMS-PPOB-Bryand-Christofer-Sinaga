@@ -27,11 +27,18 @@ export const registrationSlice = createSlice({
 export const { registerStart, registerSuccess, registerFail } =
   registrationSlice.actions;
 
-// Async thunk for registration
 export const registerUser = (userData) => async (dispatch) => {
   dispatch(registerStart());
   try {
-    await axios.post("/api/proxy/registration", userData);
+    const response = await axios.post(
+      "https://take-home-test-api.nutech-integrasi.com/registration",
+      {
+        email: userData.email,
+        first_name: userData.firstName,
+        last_name: userData.lastName,
+        password: userData.password,
+      }
+    );
     dispatch(registerSuccess());
   } catch (error) {
     dispatch(

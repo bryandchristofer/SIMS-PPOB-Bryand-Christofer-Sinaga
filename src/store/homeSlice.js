@@ -2,11 +2,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
 
+const API_BASE_URL = "https://take-home-test-api.nutech-integrasi.com";
+
 export const homeSlice = createSlice({
   name: "home",
   initialState: {
     profile: null,
-    balance: null,
+    balance: { amount: 0 }, // Ensure initial balance has an amount property
     services: [],
     banners: [],
     loading: false,
@@ -22,15 +24,16 @@ export const homeSlice = createSlice({
       state.loading = false;
     },
     fetchBalanceSuccess: (state, action) => {
-      state.balance = action.payload;
+      // Set balance to an object with an "amount" property
+      state.balance = action.payload || { amount: 0 };
       state.loading = false;
     },
     fetchServicesSuccess: (state, action) => {
-      state.services = action.payload;
+      state.services = Array.isArray(action.payload) ? action.payload : [];
       state.loading = false;
     },
     fetchBannersSuccess: (state, action) => {
-      state.banners = action.payload;
+      state.banners = Array.isArray(action.payload) ? action.payload : [];
       state.loading = false;
     },
     fetchFail: (state, action) => {
@@ -49,21 +52,36 @@ export const {
   fetchFail,
 } = homeSlice.actions;
 
-// Async thunk to fetch profile, balance, services, and banners
+const getToken = () => localStorage.getItem("token");
+
 export const fetchHomeData = () => async (dispatch) => {
   dispatch(fetchStart());
+  const token = getToken();
+  const headers = { Authorization: `Bearer ${token}` };
+
   try {
-    const profileResponse = await axios.get("/api/proxy/profile");
-    dispatch(fetchProfileSuccess(profileResponse.data));
+    const profileResponse = await axios.get(`${API_BASE_URL}/profile`, {
+      headers,
+    });
+    dispatch(fetchProfileSuccess(profileResponse.data.data));
 
-    const balanceResponse = await axios.get("/api/proxy/balance");
-    dispatch(fetchBalanceSuccess(balanceResponse.data));
+    const balanceResponse = await axios.get(`${API_BASE_URL}/balance`, {
+      headers,
+    });
+    // Ensure balance is correctly set as an object with an amount property
+    dispatch(
+      fetchBalanceSuccess({ amount: balanceResponse.data.data.balance })
+    );
 
-    const servicesResponse = await axios.get("/api/proxy/services");
-    dispatch(fetchServicesSuccess(servicesResponse.data));
+    const servicesResponse = await axios.get(`${API_BASE_URL}/services`, {
+      headers,
+    });
+    dispatch(fetchServicesSuccess(servicesResponse.data.data || []));
 
-    const bannersResponse = await axios.get("/api/proxy/banner");
-    dispatch(fetchBannersSuccess(bannersResponse.data));
+    const bannersResponse = await axios.get(`${API_BASE_URL}/banner`, {
+      headers,
+    });
+    dispatch(fetchBannersSuccess(bannersResponse.data.data || []));
   } catch (error) {
     dispatch(fetchFail(error.response?.data?.message || "Failed to load data"));
   }

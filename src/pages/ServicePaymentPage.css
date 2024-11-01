@@ -1,0 +1,61 @@
+.service-payment-container {
+    width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  .service-payment-section {
+    margin-top: 20px auto;
+  }
+  
+  .payment-title {
+    text-align: left;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .service-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .service-icon {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  }
+  
+  .service-name {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  
+  .payment-input {
+    width: 95%;
+    padding: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-sizing: border-box;
+  }
+  
+  .payment-button {
+    width: 95%;
+    padding: 15px;
+    background-color: #ff2c2c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    box-sizing: border-box;
+  }
+  
+  .payment-button:hover {
+    background-color: #e02424;
+  }
+  
