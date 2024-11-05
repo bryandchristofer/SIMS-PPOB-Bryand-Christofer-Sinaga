@@ -1,4 +1,4 @@
-Developed a website for selection at PT. Nutech Integrasi using React.js, Readux as state management, and API from https://api-doc-tht.nutech-integrasi.com/. The features are:
+Developed a website for selection at PT. Nutech Integrasi using React.js, Radux as state management, and API from https://api-doc-tht.nutech-integrasi.com/. The features are:
 1. Registration
 2. Login
 3. Profile
